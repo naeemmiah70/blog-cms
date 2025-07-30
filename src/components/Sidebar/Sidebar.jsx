@@ -58,7 +58,7 @@ const Sidebar = () => {
           <NavLink
             key={item.id}
             to={item.link}
-            end={item.customMatch} // only blogs has strict match
+            end={item.customMatch}
             className={({ isActive }) =>
               `text-dark text-decoration-none font-nunito d-flex gap-2 align-items-center px-2 py-1 ${
                 isActive ? "active-link" : ""
