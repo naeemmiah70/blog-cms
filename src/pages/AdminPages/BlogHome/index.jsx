@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAllBlogs } from "../../../services/userServices";
+import { LoadingContext } from "../../../context/LoadingContext";
+
 const BlogHome = () => {
+  const { setLoading } = useContext(LoadingContext);
+  const [blogData, setBlogData] = useState([]);
+
+  useEffect(() => {
+    handleGetAllBlogs();
+  }, []);
+
+  const handleGetAllBlogs = async () => {
+    try {
+      setLoading(true);
+      const data = await getAllBlogs();
+      if (data.length) {
+        setBlogData(data);
+      }
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    } catch (error) {
+      setLoading(false);
+      console.log("err", error);
+    }
+  };
+
+  console.log("blogData", blogData);
   return (
     <div>
       <div className="d-flex justify-content-between">
@@ -64,6 +91,42 @@ const BlogHome = () => {
         excepturi nesciunt, quod explicabo error hic porro quasi! Commodi
         delectus, molestias aliquid ipsa reprehenderit asperiores sint quisquam
         natus? Sapiente eius ipsa, dolore atque harum dolores debitis.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+        recusandae qui id expedita quae voluptates porro quas ipsum, corrupti
+        molestiae ex consequatur, reiciendis iusto quam soluta quisquam dolor
+        asperiores a error sed. Ducimus ipsa beatae atque molestias. Aliquid
+        aliquam quisquam porro quaerat qui ea quae unde id voluptatibus ipsum
+        nostrum sapiente nihil obcaecati dolore fugit architecto, laborum quidem
+        rerum magni facilis. Rem numquam dolorum animi fugiat? Accusamus
+        exercitationem sit officiis delectus minus, molestiae repellendus
+        aspernatur cupiditate harum? Omnis ea ut, ipsum distinctio laborum
+        sequi. Nostrum cum excepturi fuga tenetur quod suscipit corrupti
+        asperiores amet accusamus ut inventore esse quas veritatis incidunt quo
+        ex, reprehenderit totam quibusdam dolorem necessitatibus quasi nesciunt
+        facilis. Tenetur ullam similique possimus dolorum ipsum neque odit,
+        repellat dignissimos! Obcaecati id laudantium culpa, nesciunt doloribus
+        ad rerum blanditiis nemo. Nisi dolores accusantium ratione sint
+        dignissimos! Quam sit quo, incidunt libero ea est rerum voluptatem
+        dolore excepturi veniam eaque doloremque fugit dolores quia quas
+        expedita omnis ipsam aliquam saepe qui ipsum facere blanditiis minima
+        quaerat? Placeat molestiae nulla voluptate velit aspernatur, quidem
+        modi, fuga, labore eveniet sed repudiandae voluptatem dolore doloribus
+        distinctio repellendus officiis ex enim? Itaque, corporis quaerat ipsa
+        tenetur pariatur fugiat sed totam unde nihil dicta placeat, error,
+        temporibus dignissimos maxime cupiditate voluptatum nesciunt omnis
+        eligendi. Quis aliquam cum porro ducimus. Et illum architecto facere
+        officia nemo laborum deserunt laudantium consectetur fugiat vero facilis
+        culpa repellendus, magni odit rerum accusantium at incidunt hic
+        inventore molestias cumque tempora labore ad! Delectus, eveniet
+        blanditiis odit molestiae cupiditate, aliquid quae assumenda laborum
+        similique excepturi, officia enim cum repudiandae officiis quam
+        provident porro. Aliquid molestias ea iure perferendis ullam pariatur
+        accusamus eaque, quaerat illo debitis quo. Dignissimos esse dolore
+        cumque id libero culpa vitae magnam ea ipsam error, necessitatibus
+        delectus consectetur quibusdam. Consequatur esse vero facilis deleniti
+        cumque debitis accusantium accusamus.
       </p>
     </div>
   );

@@ -5,7 +5,7 @@ import Header from "../components/Header/Header";
 
 const AdminLayout = () => {
   return (
-    <div style={{ height: "100vh" }} className="d-block d-md-flex">
+    <div style={{ height: "100%" }} className="d-block d-md-flex">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header />
